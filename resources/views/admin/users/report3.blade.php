@@ -252,7 +252,7 @@
         height: 100%;
         z-index: 9999;
     }
-    li:before {
+    li.doc:before {
     content: "";
     top: 44%;
     left: 0px;
@@ -621,7 +621,7 @@
                                 </p>
                                 <ul>
                                 @foreach ($document as $user_doc)
-                                    <li class="col-12 row mx-0 my-2 py-1 a;ign-items-center border-top border-bottom px-0">
+                                    <li class="col-12 row mx-0 my-2 doc py-1 a;ign-items-center border-top border-bottom px-0">
                                         <div
                                             class="d-flex justify-content-between align-items-center smaTxt m-0 fontmed col-6 para fw-bold border-0">
                                             <p>
