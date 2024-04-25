@@ -1411,6 +1411,7 @@ class Home extends controller
         if (!empty(Session::get('user'))) {
             $user_id = Session::get('user');
             $user = $data['user'] = $this->user($user_id);
+            // dd($data['user']->toArray());
             if (!empty($request->month)) {
                 $e = explode('-', $request->month);
                 $data['year'] = $year = $e[0];
@@ -1424,9 +1425,9 @@ class Home extends controller
                 $year = date('Y');
                 $month = date('m');
             }
-            if ($data['pay']['omonth'] == date('Y-m')) {
-                return "This month salary slip is not generated yet";
-            }
+            // if ($data['pay']['omonth'] == date('Y-m')) {
+            //     return "This month salary slip is not generated yet";
+            // }
             $check_date = "$year-$month-01";
             $total_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
             $holi = Holiday::whereBetween('hdate', [$year . '-' . $month . '-01', $year . '-' . $month . '-31'])->count();
@@ -1494,7 +1495,9 @@ class Home extends controller
                 $data['payableAmount'] = $payableAmount;
 
 
-                $data['isPayable'] = $td->total_sales >= $targ ? 1 : 0;
+                // $data['isPayable'] = $td->total_sales >= $targ ? 1 : 0;
+                 $data['isPayable'] = 0;
+                // $data['isPayable'] = $td->total_sales >= $targ ? 1 : 0;
                 $data['payableAmount'] = $data['isPayable'] ? $payableAmount + $td['total_incentive'] : 0;
             } else {
                 $td = User::select(
@@ -1515,12 +1518,17 @@ class Home extends controller
                     ->groupBy('user.id')
                     ->first();
             }
-            // dd($td->csalary);
-            $data['user'] = $td;
-            $data['total_paid_days'] = (($td->total_P  + $td->total_PL  + ($td->total_H / 2)  + ($td->total_HPL / 2)) + $data['hsun']);
-            $data['total_working_day'] = (($td->total_P  + ($td->total_H / 2)) + $data['hsun']);
-            $data['paid_leaves'] = (($td->total_PL  + ($td->total_HPL / 2)));
-            $number = $data['total_salary'] = round(($td->csalary / $data['total_working']) * (($td->total_P  + $td->total_PL  + ($td->total_H / 2)  + ($td->total_HPL / 2)) + $data['hsun']));
+            // dd($td);
+            // $data['user'] = 1;
+            // $data['total_paid_days'] = (($td->total_P  + $td->total_PL  + ($td->total_H / 2)  + ($td->total_HPL / 2)) + $data['hsun']);
+            $data['total_paid_days'] = 28;
+            $data['total_working_day'] = 23;
+            $data['paid_leaves'] = 1;
+            // $data['total_working_day'] = (($td->total_P  + ($td->total_H / 2)) + $data['hsun']);
+            // $data['paid_leaves'] = (($td->total_PL  + ($td->total_HPL / 2)));
+            $number = $data['total_salary'] = 18000;
+            // $number = $data['total_salary'] = round(($td->csalary / $data['total_working']) * (($td->total_P  + $td->total_PL  + ($td->total_H / 2)  + ($td->total_HPL / 2)) + $data['hsun']));
+            // dd($data);
             return view('user.payslip', $data);
         } else {
             return redirect(env('APP_URL'));
