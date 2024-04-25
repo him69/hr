@@ -23,7 +23,7 @@ body {
 }
 
 .baseShadow {
-    /* box-shadow: 0px 3px 6px #00639633; */
+    box-shadow: 0px 3px 6px #92929233;
 }
 
 .noSaleDay {
@@ -299,10 +299,6 @@ textarea:focus {
     border-radius: .25rem;
 }
 
-.app-sidebar .app-sidebar__inner {
-    /* padding: 2px 1.5rem 1.5rem; */
-    padding: 0px;
-}
 
 .app-sidebar.sidebar-shadow {
     box-shadow: 0px 0 30px rgb(0 0 0 / 10%);
@@ -338,6 +334,7 @@ textarea:focus {
 .fixed-sidebar .app-main .app-main__outer {
     z-index: 9;
     padding-left: 200px;
+    transition: all .5s ease-in-out;
 }
 
 .uqColore {
@@ -376,7 +373,8 @@ textarea:focus {
     flex: 0 0 200px;
     margin-top: 0px !important;
     padding-top: 0 !important;
-    transition: all .2s;
+    transition: all .5s ease-in-out;
+
 }
 
 .vertical-nav-menu {
@@ -394,7 +392,8 @@ textarea:focus {
 
 .app-sidebar .app-sidebar__inner {
     /* padding: 0px !important; */
-    overflow: auto;
+    overflow: hidden;
+    padding: 0px;
 }
 
 .app-sidebar__heading {
@@ -685,7 +684,7 @@ th.UserAttendance table td {
    border-radius: 0 0 12px 12px;
 } */
 .smaTxt {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .vsmatxt {
@@ -704,6 +703,10 @@ th.UserAttendance table td {
 .smbr {
     height: 16px;
     width: 16px;
+}
+.smbr i{
+    position: relative;
+    top: -2px;
 }
 
 .bibr {
@@ -1038,38 +1041,40 @@ p {
     top: 0;
     margin-left: 200px;
     background: #f1f4f6;
+    transition: all .5s ease-in-out;
 }
 
 /* side bar closed */
 .fixed-header .app-header.close {
     position: fixed;
-    width: calc(100% - 80px);
+    width: calc(100% - 60px);
     top: 0;
-    margin-left: 80px;
+    margin-left: 60px;
     background: #f1f4f6;
+    transition: all .5s ease-in-out;
 }
 
 .app-sidebar.close {
-    width: 80px;
+    width: 60px;
     display: flex;
     z-index: 11;
     overflow: hidden;
-    min-width: 80px;
+    min-width: 44px;
     position: fixed;
     flex: 0 0 80px;
     margin-top: 0px !important;
     padding-top: 0 !important;
-    transition: all .2s;
+    transition: all .5s ease-in-out;
 
     .hamnav_desktop {
         /* text-indent: -10px; */
-        position: relative;
-        left: -10px;
+        /* position: relative;
+        left: -10px; */
     }
 
     .vertical-nav-menu li a {
-        padding: 0 0 0 5px;
-
+        padding:0;
+        transition: all .5s ease-in-out;
         .l_text,
         span.text-warning {
             text-indent: -171px;
@@ -1079,5 +1084,18 @@ p {
 }
 
 .fixed-sidebar .app-main .app-main__outer.collapse {
-    padding-left: 80px;
+    padding-left: 60px;
+    transition: all .5s ease-in-out;
+}
+
+@media only screen and (max-width: 1140px) {
+    .salesCalender .smaTxt {
+    font-size: 11px;
+}
+}
+
+@media (max-width: 991.98px) {
+    .app-main .app-main__outer {
+        padding-left: 45px !important;
+    }
 }

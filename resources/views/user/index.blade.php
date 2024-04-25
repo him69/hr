@@ -171,14 +171,14 @@
                     <div class="alert alert-danger text-center">Your @foreach($document as $user_doc) {{$user_doc->document_name}} @if(!$loop->last), @endif @endforeach Rejected Uploded it again ! <a href="{{env('APP_URL')}}profile/documentUpload">Click here</a>
                     </div>
                     @if ($user->user_type == 1)
-                        <div class=" col-lg-7 col-12 p-2 order-2">
+                        <div class=" col-lg-7 col-12 p-2 order-2 order-lg-1">
                             <div class="bg-white rounded-2 p-2">
                             <div class="">
                                 <p
                                     class="border-bottom border-2 border-start-0 border-end-0 border-top-0 h4 fw-bold text-center">
                                     Here is your detailed dashboard</p>
                             </div>
-                            <div class="row mx-0 my-2 mt-3">
+                            <div class="row mx-0 mt-3">
                                 @if ($user->server_ip == '144.76.0.239')
                                     @php($targ = round(($user->salary / 1000 / 100) * $us_umst))
                                     @php($leadtarg = $ulta)
@@ -286,13 +286,13 @@
                                         </div>
 
                                     </div>
-                                    <div class="border rounded p-1 d-flex justify-content-between">
-                                        <div class=" d-flex align-items-center ">
+                                    <div class="border rounded p-1 d-flex justify-content-around">
+                                        <div class=" d-flex align-items-center py-2">
                                             <div
                                                 class="samllText mx-2 text-white rounded-circle smbr text-center lh-base bg-success">
                                                 <i class="bi bi-check"></i>
                                             </div>
-                                            <p class="m-0 vsmatxt smText ">payable amount</p>
+                                            <p class="m-0 vsmatxt smText ">Payable Amount</p>
                                         </div>
                                         <div class="mx-1" style="background: black;width: 1px;"></div>
                                         <div class="d-flex align-items-center ">
@@ -305,7 +305,7 @@
                                     </div>
 
                                 </div>
-                                <div class="border rounded px-4 col-md-6 my-2 col-12">
+                                <div class="border-start rounded-0 px-4 col-md-6 col-12">
                                     <p
                                         class="border-bottom border-2 border-start-0 border-end-0 border-top-0 h4 fw-bold text-center">
                                         Sales & Bonuses</p>
@@ -419,6 +419,7 @@
                                         </div>
                                     </div>
                                     <div>
+                                           {{-- @if($total_sales  $ftarg) --}}
                                         <p class="vsmaTxt m-0 fontmed smText text-center my-2">You're doing great keep
                                             it up!!!</p>
                                     </div>
@@ -502,13 +503,13 @@
                         </div>
                     @endif
                     <div
-                        class=" @if ($user->user_type == 4) col-lg-4 col-12 d-flex @else col-lg-5 col-12 order-1 @endif">
+                        class=" @if ($user->user_type == 4) col-lg-4 col-12 d-flex @else col-lg-5 col-12 order-1 order-lg-2 p-2 @endif">
                         @if ($user->user_type !== 4)
                             <div class="row mb-4 ">
                                 <div class="col-6 ">
                                     <form method="get">
                                         <div
-                                            class="row p-1 gx-0 justify-content-between bg-transparent baseShadow baseBtnbr rounded-2">
+                                            class="row p-1 gx-0 justify-content-between bg-transparent  baseBtnbr rounded-2">
                                             <div class="col-9">
                                                 <input type="month" name="date" value="{{ $date }}"
                                                     class="form-control border-0 bg-transparent"
@@ -540,7 +541,7 @@
                                 </div>
                             </div>
                         @endif
-                        <div class="borderRadius baseShadow p-3 my-2 atten w-100">
+                        <div class="bg-white rounded-2 p-3 my-2 atten w-100">
                             <p
                                 class="border-bottom border-2 border-start-0 border-end-0 border-top-0 h4 fw-bold text-center">
                                 Mark @if ($user->user_type == 4)
@@ -721,34 +722,48 @@
                                 $timestamp = strtotime('' . $sd . '');
                                 $sday = date('D', $timestamp); ?>
                                 @if ($sday == 'Sun')
-                                    <div class="smaTxt p-2 border " style="width:142px;">
+                                    <div class="smaTxt p-2 border " style="width:14.28%">
                                         <div class="justify-content-around align-items-center d-flex">
                                             <div class="d-flex">
                                                 <span
-                                                    style="font-weight:700; color:#212E50;">{{ $mte }}</span>
-                                                <span class="fw-light mx-2">({{ $sday }})</span>
+                                                    style="font-weight:700; color:#212E50;">   @if ($mte < 10){{  '0'.$mte  }}
+                                                @else
+                                                {{ $mte }}
+                                                @endif </span>
+                                                <span class="fw-light mx-xxl-2 mx-1">({{ $sday }})</span>
                                             </div>
                                             <span class="sun px-2  text-center">SUN</span>
                                         </div>
                                     </div>
                                 @elseif(App\Models\Holiday::where('hdate', $hda)->count() > 0)
-                                    <div class="smaTxt p-2 border " style="width:142px;">
+                                    <div class="smaTxt p-2 border " style="width:14.28%">
                                         <div class="justify-content-around align-items-center d-flex">
                                             <div class="d-flex">
                                                 <span
-                                                    style="font-weight:700; color:#212E50;">{{ $mte }}</span><span
-                                                    class="fw-light mx-2">({{ $sday }})</span>
+                                                    style="font-weight:700; color:#212E50;">   @if ($mte < 10){{  '0'.$mte  }}
+                                                @else
+                                                {{ $mte }}
+                                                @endif </span><span
+                                                    class="fw-light mx-xxl-2 mx-1">({{ $sday }})</span>
                                             </div>
                                             <span class="noSaleDay px-2  text-center"> NH</span>
                                         </div>
                                     </div>
                                 @else
-                                    <div class="smaTxt p-2 border" style="width:142px;">
+                                    <div class="smaTxt p-2 border" style="width:14.28%">
                                         <div class="justify-content-around align-items-center d-flex">
                                             <div class="d-flex">
                                                 <span
-                                                    style="font-weight:700; color:#212E50;">{{ $mte }}</span><span
-                                                    class="fw-light mx-2">({{ $sday }})</span>
+                                                    style="font-weight:700; color:#212E50;">
+                                                    @if ($mte < 10){{  '0'.$mte  }}
+                                                @else
+                                                   @if ($mte < 10){{  '0'.$mte  }}
+                                                @else
+                                                {{ $mte }}
+                                                @endif 
+                                                @endif    
+                                                </span><span
+                                                    class="fw-light mx-xxl-2 mx-1">({{ $sday }})</span>
                                             </div>
                                             <span class="noSaleDay absent px-2  text-center">A</span>
                                         </div>
@@ -766,35 +781,50 @@
                             <?php $timestamp = strtotime('' . $date . '-' . str_pad($mte, 2, '0', STR_PAD_LEFT) . '');
                             $sday = date('D', $timestamp); ?>
                             @if ($sday == 'Sun')
-                                <div class="smaTxt p-2 border" style="width:142px;">
+                                <div class="smaTxt p-2 border" style="width:14.28%">
                                     <div class="justify-content-around align-items-center d-flex">
                                         <div class="d-flex">
-                                            <span style="font-weight:700; color:#212E50;">{{ $mte }}</span>
-                                            <span class="fw-light mx-2">({{ $sday }})</span>
+                                            <span style="font-weight:700; color:#212E50;">   @if ($mte < 10){{  '0'.$mte  }}
+                                                @else
+                                                {{ $mte }}
+                                                @endif </span>
+                                         <span class="fw-light mx-xxl-2 mx-1" >({{ $sday }})</span>
                                         </div>
                                         <!--<span class=" px-2  text-center">Sale: {{ $at }}</span>-->
                                     </div>
                                 </div>
                             @elseif(App\Models\Holiday::where('hdate', $date . '-' . str_pad($mte, 2, '0', STR_PAD_LEFT))->count() > 0)
-                                <div class="smaTxt p-2 border" style="width:142px;">
+                                <div class="smaTxt p-2 border" style="width:14.28%">
                                     <div class="justify-content-around align-items-center d-flex">
-                                        <span style="font-weight:700; color:#212E50;">{{ $mte }}</span><span
-                                            class="fw-light mx-2">({{ $sday }})</span>
+                                        <span style="font-weight:700; color:#212E50;">   @if ($mte < 10){{  '0'.$mte  }}
+                                                @else
+                                                {{ $mte }}
+                                                @endif </span><span
+                                            class="fw-light mx-xxl-2 mx-1" >({{ $sday }})</span>
                                     </div>
-                                    <span style="font-weight:700;">{{ $mte }}</span> <span
+                                    <span style="font-weight:700;">   @if ($mte < 10){{  '0'.$mte  }}
+                                                @else
+                                                {{ $mte }}
+                                                @endif </span> <span
                                         class="sun px-2  text-center">NH</span>
                     </div>
                 </div>
                 @else
-                    <div class="smaTxt p-2 border" style="width:142px;">
+                    <div class="smaTxt p-2 border" style="width:14.28%">
                         <div class="justify-content-around align-items-center d-flex">
                             <div class="d-flex">
-                                <span style="font-weight:700; color:#212E50;">{{ $mte }}</span><span
-                                    class="fw-light mx-2">({{ $sday }})</span>
+                                <span style="font-weight:700; color:#212E50;">   @if ($mte < 10){{  '0'.$mte  }}
+                                                @else
+                                                {{ $mte }}
+                                                @endif </span><span
+                                    class="fw-light mx-xxl-2 mx-1">({{ $sday }})</span>
                             </div>
                             <span
-                                class="@if ($at > 0) saleDone @else noSale @endif px-2  text-center">Sale:
+                                class="@if ($at > 0) saleDone @else noSale @endif px-2  text-center">SD <span style="top: -1px;position: relative;">:</span>
+                                @if ($at < 10){{  '0'.$at  }}
+                                @else
                                 {{ $at }}
+                                @endif
                             </span>
                         </div>
                     </div>
@@ -1605,296 +1635,9 @@
     });
 </script>
 @include('user.includes.footer')
-<script>
-    var openchat = 0;
-    var printtext = document.getElementById('chatmsg');
-    var copytext = document.getElementById('typemsg');
-    var group_id;
-    var last_id = 1;
-    var chat_type = 1;
-    var receiver_type = 1;
-    var es = null;
-    var mdes = null;
-    var cv = 0;
 
-    function open_chat(tab, id, name, type = 1, receiver = 1) {
-        chat_type = type;
-        receiver_type = receiver;
-        group_id = id;
-        if (openchat == 0) {
-            $('#prechat_box').addClass('d-none');
-            $('#chat_box').removeClass('d-none');
-            openchat = 1;
-        }
-        $('.chat_nav').removeClass('bg-blueviolet');
-        $(tab).addClass('bg-blueviolet');
-        $('#chat_name').html(name);
-        var settings = {
-            "url": "/get_message?group_id=" + group_id + "&type=" + type + "&receiver_type=" + receiver_type,
-            "method": "GET",
-            "timeout": 0,
-        };
-        $.ajax(settings).done(function(response) {
-            var printnow = '';
-            response.data.map((data) => {
-                if (data.sender_id == {{ $user->id }} && data.sender_type == 1) {
-                    printnow += `<div class="flex justify-end pt-2 pl-10">
-                                <div style="margin: 0 12px;">
-                                    <div
-                                        style="background: #EEFAFB;box-shadow: 0px 2px 3px #00000029;padding: 5px;border-radius: 5px;">
-                                        <p class="chattxt"> ${data.message}</p>
-                                        <p class="text-end" style="font-size: 10px;">${fixdate(data.created_at)}</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-end justify-end">
-                                    <img src="https://i.imgur.com/IAgGUYF.jpg" class="rounded-full shadow-xl" width="20"
-                                        height="20">
-                                </div>
-                            </div>`;
-
-                } else {
-                    printnow += `<div class="flex items-center pr-10 my-3 pt-2">
-                                <img src="https://i.imgur.com/IAgGUYF.jpg" class="rounded-full shadow-xl" width="20"
-                                    height="20" style="margin-top: 10px;align-self: baseline;">
-                                <div style="margin: 0 12px;">
-                                    <div style="background: white;box-shadow: 0px 2px 3px #00000029;padding: 5px;border-radius: 5px;">
-                                        <p class="chattxt">${(data.name ? data.name : data.user_id) ? (data.name ? data.name : data.user_id) : 'Admin'}</p>
-                                        <hr>
-                                        <p class="chattxt">${data.message}</p>
-                                        <p class="text-end" style="font-size: 10px;">${fixdate(data.created_at)}</p>
-                                    </div>
-                                </div>
-                            </div>`;
-
-
-                }
-                if (last_id < data.id) {
-                    last_id = data.id;
-                }
-            });
-            $(printtext).html(printnow);
-            var box = document.getElementById('journal-scroll');
-            box.scrollTop = box.scrollHeight;
-            get_message();
-        });
-    }
-
-    function sendbtn() {
-        var copiedtext = copytext.value;
-        if (copiedtext == null || copiedtext == '') {
-            return null;
-        } else {
-            var printnow = '';
-            var form = new FormData();
-            form.append("group_id", group_id);
-            form.append("message", copiedtext);
-            form.append("chat_type", chat_type);
-            form.append("receiver_type", receiver_type);
-            form.append("_token", '{{ csrf_token() }}');
-            var settings = {
-                "url": "/chat_send_message",
-                "method": "POST",
-                "timeout": 0,
-                "processData": false,
-                "mimeType": "multipart/form-data",
-                "contentType": false,
-                "data": form
-            };
-            $.ajax(settings).done(function(response) {
-                var data = JSON.parse(response);
-                data.data.map((data) => {
-                    printnow += `<div class="flex justify-end pt-2 pl-10">
-                                <div style="margin: 0 12px;">
-                                    <div
-                                        style="background: #EEFAFB;box-shadow: 0px 2px 3px #00000029;padding: 5px;border-radius: 5px;">
-                                        <p class="chattxt"> ${data.message}</p>
-                                        <p class="text-end" style="font-size: 10px;">${fixdate(data.created_at)}</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-end justify-end">
-                                    <img src="https://i.imgur.com/IAgGUYF.jpg" class="rounded-full shadow-xl" width="20"
-                                        height="20">
-                                </div>
-                            </div>`;
-
-                    if (last_id < data.id) {
-                        last_id = data.id;
-                    }
-                });
-                $(printtext).append(printnow);
-                var box = document.getElementById('journal-scroll');
-                box.scrollTop = box.scrollHeight;
-                copytext.value = '';
-                get_message();
-            });
-        }
-    }
-</script>
 </div>
-<script>
-    function get_message() {
-        if (es !== null) {
-            es.close();
-        }
-        es = new EventSource("/sse?group_id=" + group_id + "&last_id=" + last_id + '&type=' + chat_type);
-        es.onmessage = function(event) {
-            const data = JSON.parse(event.data);
-            var printnow = '';
-            if (data.new_message > 0) {
-                data.data.map((data) => {
-                    if (data.sender_id == {{ $user->id }} && data.sender_type == 1) {
-                        printnow += `<div class="flex justify-end pt-2 pl-10">
-                                <div style="margin: 0 12px;">
-                                    <div
-                                        style="background: #EEFAFB;box-shadow: 0px 2px 3px #00000029;padding: 5px;border-radius: 5px;">
-                                        <p class="chattxt"> ${data.message}</p>
-                                        <p class="text-end" style="font-size: 10px;">${fixdate(data.created_at)}</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-end justify-end">
-                                    <img src="https://i.imgur.com/IAgGUYF.jpg" class="rounded-full shadow-xl" width="20"
-                                        height="20">
-                                </div>
-                            </div>`;
-                    } else {
-                        printnow += `<div class="flex items-center pr-10 my-3 pt-2">
-                                <img src="https://i.imgur.com/IAgGUYF.jpg" class="rounded-full shadow-xl" width="20"
-                                    height="20" style="margin-top: 10px;align-self: baseline;">
-                                <div style="margin: 0 12px;">
-                                    <div style="background: white;box-shadow: 0px 2px 3px #00000029;padding: 5px;border-radius: 5px;">
 
-                                        <p class="chattxt">${(data.name ? data.name : data.user_id) ? (data.name ? data.name : data.user_id) : 'Admin'}</p>
-                                        <hr>
-                                        <p class="chattxt">${data.message}</p>
-                                        <p class="text-end" style="font-size: 10px;">${fixdate(data.created_at)}</p>
-                                    </div>
-                                </div>
-                            </div>`;
-                    }
-                    if (last_id < data.id) {
-                        last_id = data.id;
-                    }
-                });
-                $(printtext).append(printnow);
-                var box = document.getElementById('journal-scroll');
-                box.scrollTop = box.scrollHeight;
-                get_message();
-            }
-            if (data.group.length > 0) {
-                $(".cncg").each(function() {
-                    $(this).html();
-                });
-                data.group.map((gdata) => {
-                    $("#group_" + gdata.group_id).html(gdata.new_message);
-                });
-            }
-            if (data.user.length > 0) {
-                data.user.map((gdata) => {
-                    let ld = $("#user_" + gdata.sender_id);
-
-                    if (ld.html() != gdata.new_message) {
-                        ld.html(gdata.new_message);
-
-                        const chatElement = ld.closest('nav');
-                        const pinnedChats = chatElement.parent().find('.pinned');
-
-                        // If this chat is pinned, don't move it. Otherwise, determine its position.
-                        if (!chatElement.hasClass('pinned')) {
-                            if (pinnedChats.length > 0) {
-                                // If there are pinned chats, place the updated chat right after the last pinned chat
-                                chatElement.insertAfter(pinnedChats.last());
-                            } else {
-                                // If no pinned chats, move the updated chat to the very top
-                                chatElement.prependTo(chatElement.parent());
-                            }
-                        }
-                    }
-                });
-            }
-        };
-        es.onerror = function(event) {
-            console.error('Error occurred:', event);
-            es.close();
-            get_message();
-        };
-    }
-
-    function messdata() {
-        var tmess = 0;
-        var otmess = 0;
-        if (mdes !== null) {
-            mdes.close();
-        }
-        mdes = new EventSource("/messdata?last_id=" + last_id);
-        mdes.onmessage = function(event) {
-            const data = JSON.parse(event.data);
-            var printnow = '';
-            if (data.group.length > 0) {
-                $(".cncg").each(function() {
-                    $(this).html();
-                });
-                data.group.map((gdata) => {
-                    $("#group_" + gdata.group_id).html(gdata.new_message);
-                });
-            }
-            if (data.user.length > 0) {
-                if (JSON.stringify(data.user) != cv) {
-                    cv = JSON.stringify(data.user);
-                    data.user.map((gdata) => {
-                        $("#user_" + gdata.sender_id).html(gdata.new_message);
-                        const chatElement = $("#user_" + gdata.sender_id).closest('nav');
-                        const pinnedChats = chatElement.parent().find('.pinned');
-                        // If this chat is pinned, don't move it. Otherwise, determine its position.
-                        if (!chatElement.hasClass('pinned')) {
-                            if (pinnedChats.length > 0) {
-                                // If there are pinned chats, place the updated chat right after the last pinned chat
-                                chatElement.insertAfter(pinnedChats.last());
-                            } else {
-                                // If no pinned chats, move the updated chat to the very top
-                                chatElement.prependTo(chatElement.parent());
-                            }
-                        }
-                        tmess += parseInt(gdata.new_message);
-                    });
-                    if (tmess != otmess) {
-                        playAudio();
-                        $("#tmess").html(tmess);
-                    }
-                    otmess = tmess;
-                } else {}
-            }
-        };
-        mdes.onerror = function(event) {
-            mdes.close();
-            messdata();
-        };
-    }
-
-    function playAudio() {
-        var audio = new Audio('/public/sms.mp3');
-        audio.play();
-    }
-    messdata();
-    copytext.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            document.getElementById("send").click();
-        }
-    });
-    $('#chatsearch').on('input', function() {
-        let searchValue = this.value.toLowerCase();
-        let navElements = document.querySelectorAll('.chat_nav');
-
-        navElements.forEach(function(nav) {
-            let name = nav.querySelector('.text-md').innerText.toLowerCase();
-            if (name.includes(searchValue)) {
-                nav.style.display = 'flex';
-            } else {
-                nav.style.display = 'none';
-            }
-        });
-    });
-</script>
 <script>
     var loadFile1 = function(event) {
         var image = document.getElementById('output1');

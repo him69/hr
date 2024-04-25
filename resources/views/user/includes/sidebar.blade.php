@@ -25,6 +25,7 @@
     }
     .app-sidebar.close .username{
 opacity: 0;
+display:none;
 transition: all .3s ease-in-out;
     }
     .app-sidebar:not(.close) .username{
@@ -46,13 +47,13 @@ text-align: center;
 <div class="app-sidebar sidebar-shadow" style="background: #4c4b46;">
     <div class="scrollbar-sidebar" style="overflow:auto;">
         <div class="app-sidebar__inner px-3">
-            <div class="mt-4 align-items-center d-flex hamnav_desktop">
-                <div class="d-flex align-items-center justify-content-center">
-                    <p class="d-block text-decoration-none text-white bibr smaTxt p-1 m-1 lh-sm text-center rounded-circle bibr" id="ham_nav_icon" data-toggle="tooltip" data-placement="top" title="open/close">
+            <div class="mt-4  hamnav_desktop">
+                <div class="">
+                    <p class="d-block text-decoration-none text-white bibr smaTxt p-1 m-1  lh-sm text-center rounded-circle bibr" id="ham_nav_icon" data-toggle="tooltip" data-placement="top" title="open/close">
                         <i class="fa-solid fa-bars"></i>
                     </p>
                 </div>
-                <a href="{{env('APP_URL')}}profile" class="profileIcon baseBtnBg lh-sm text-center p-1 m-1 smatxt rounded-circle text-white">
+                <a href="{{env('APP_URL')}}profile" class="profileIcon baseBtnBg lh-sm text-center p-1 m-1 my-4 smatxt rounded-circle text-white">
                         <i class="fa-solid fa-user"></i>
                     </a>
                 <div class="mx-2 txtnav l_text username">
