@@ -1,5 +1,5 @@
 @include('user.includes.header')
-<link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+{{-- <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"> --}}
 <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
@@ -47,7 +47,7 @@
         .modal-dialog.modal-dialog-centered{
             box-shadow: unset
         }
-        .fixed-header .app-header {
+        /* .fixed-header .app-header {
     position: fixed;
     width: calc(100% - 200px);
     top: 0;
@@ -61,13 +61,14 @@
     top: 0;
     margin-left: 0;
     background: #f1f4f6;
-}}
+}} */
 
     </style>
     @include('user.includes.top_nav')
+    @include('user.includes.sidebar')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css" />
     <div class="app-main position-ralative overflow-hidden">
-        @include('user.includes.sidebar')
+       
         <div class="app-main__outer">
             <div class="app-main__inner mb-3 position-relative">
                 <script>
@@ -171,12 +172,12 @@
                     <div class="alert alert-danger text-center">Your @foreach($document as $user_doc) {{$user_doc->document_name}} @if(!$loop->last), @endif @endforeach Rejected Uploded it again ! <a href="{{env('APP_URL')}}profile/documentUpload">Click here</a>
                     </div>
                     @if ($user->user_type == 1)
-                        <div class=" col-lg-7 col-12 p-2 order-2 order-lg-1">
-                            <div class="bg-white rounded-2 p-2">
+                        <div class=" col-lg-7 col-12 order-2 order-lg-1">
+                            <div class="bg-white rounded-2 p-3">
                             <div class="">
-                                <p
-                                    class="border-bottom border-2 border-start-0 border-end-0 border-top-0 h4 fw-bold text-center">
-                                    Here is your detailed dashboard</p>
+                                <h4
+                                    class="border-bottom text-center fw-bold pb-3">
+                                    Here is your detailed dashboard</h4>
                             </div>
                             <div class="row mx-0 mt-3">
                                 @if ($user->server_ip == '144.76.0.239')
@@ -193,7 +194,7 @@
                                 @endif
                                 <div class="px-4 py-2 col-md-6 col-12">
                                     <div
-                                        class="d-flex py-2 border-bottom border-2 border-start-0 border-end-0 border-top-0 ">
+                                        class="d-flex py-2 border-bottom ">
                                         <div class="w-100">
                                             <p class="smaTxt m-0 me-4 ">Total <span class="fw-bold"
                                                     style="color:#212E50;">Daily </span> Incentives
@@ -306,9 +307,9 @@
 
                                 </div>
                                 <div class="border-start rounded-0 px-4 col-md-6 col-12">
-                                    <p
-                                        class="border-bottom border-2 border-start-0 border-end-0 border-top-0 h4 fw-bold text-center">
-                                        Sales & Bonuses</p>
+                                    <h4
+                                        class="border-bottom fw-bold text-center">
+                                        Sales & Bonuses</h4>
                                     <div
                                         class="d-flex py-2 border-bottom border-2 border-start-0 border-end-0 border-top-0 w-100">
                                         <div
@@ -542,11 +543,10 @@
                             </div>
                         @endif
                         <div class="bg-white rounded-2 p-3 my-2 atten w-100">
-                            <p
-                                class="border-bottom border-2 border-start-0 border-end-0 border-top-0 h4 fw-bold text-center">
-                                Mark @if ($user->user_type == 4)
-                                    @else{{ 'Your' }}
-                                @endif Attendance</p>
+                            <h4 class="border-bottom text-center fw-bold pb-3">
+                            Mark @if ($user->user_type == 4)
+                            @else{{ 'Your' }}
+                        @endif Attendance</h4>
                             <form action="{{ env('APP_URL') }}attendance/mark" method="post">
                                 @csrf
                                 @if ($user->user_type == 1)
@@ -690,14 +690,14 @@
                 </div>
             </div>
             @if ($user->user_type == 1)
-                <div class="baseShadow borderRadius p-1">
+                <div class="baseShadow borderRadius m-1">
                     <div class="row p-1 align-items-center justify-content-center">
                         <div class="col-12">
-                            <p class="text-center SubHeding m-0">Take a look on your monthly sales <span
-                                    style="color:#006396;"> ({{ date('F Y', strtotime($date)) }})</span></p>
+                            <h4 class="text-center fw-bold py-3 mb-0">Take a look on your monthly sales <span
+                                    style="color:#006396;"> ({{ date('F Y', strtotime($date)) }})</span></h4>
                         </div>
                     </div>
-                    <div class="salesCalender p-1 mt-3">
+                    <div class="salesCalender p-1">
                         <div class="">
                             @foreach ($attendance as $user_id => $att)
                                 <div class="d-flex flex-wrap">
@@ -722,8 +722,8 @@
                                 $timestamp = strtotime('' . $sd . '');
                                 $sday = date('D', $timestamp); ?>
                                 @if ($sday == 'Sun')
-                                    <div class="smaTxt p-2 border " style="width:14.28%">
-                                        <div class="justify-content-around align-items-center d-flex">
+                                    <div class="smaTxt p-2 border attendance-box sunday" >
+                                        <div class="justify-content-around align-items-center d-flex phone_column">
                                             <div class="d-flex">
                                                 <span
                                                     style="font-weight:700; color:#212E50;">   @if ($mte < 10){{  '0'.$mte  }}
@@ -736,8 +736,8 @@
                                         </div>
                                     </div>
                                 @elseif(App\Models\Holiday::where('hdate', $hda)->count() > 0)
-                                    <div class="smaTxt p-2 border " style="width:14.28%">
-                                        <div class="justify-content-around align-items-center d-flex">
+                                    <div class="smaTxt p-2 border attendance-box " >
+                                        <div class="justify-content-around align-items-center d-flex phone_column">
                                             <div class="d-flex">
                                                 <span
                                                     style="font-weight:700; color:#212E50;">   @if ($mte < 10){{  '0'.$mte  }}
@@ -750,8 +750,8 @@
                                         </div>
                                     </div>
                                 @else
-                                    <div class="smaTxt p-2 border" style="width:14.28%">
-                                        <div class="justify-content-around align-items-center d-flex">
+                                    <div class="smaTxt p-2 border attendance-box" >
+                                        <div class="justify-content-around align-items-center d-flex phone_column">
                                             <div class="d-flex">
                                                 <span
                                                     style="font-weight:700; color:#212E50;">
@@ -781,8 +781,8 @@
                             <?php $timestamp = strtotime('' . $date . '-' . str_pad($mte, 2, '0', STR_PAD_LEFT) . '');
                             $sday = date('D', $timestamp); ?>
                             @if ($sday == 'Sun')
-                                <div class="smaTxt p-2 border" style="width:14.28%">
-                                    <div class="justify-content-around align-items-center d-flex">
+                                <div class="smaTxt p-2 border attendance-box sunday" >
+                                    <div class="justify-content-around align-items-center d-flex phone_column">
                                         <div class="d-flex">
                                             <span style="font-weight:700; color:#212E50;">   @if ($mte < 10){{  '0'.$mte  }}
                                                 @else
@@ -794,8 +794,8 @@
                                     </div>
                                 </div>
                             @elseif(App\Models\Holiday::where('hdate', $date . '-' . str_pad($mte, 2, '0', STR_PAD_LEFT))->count() > 0)
-                                <div class="smaTxt p-2 border" style="width:14.28%">
-                                    <div class="justify-content-around align-items-center d-flex">
+                                <div class="smaTxt p-2 border attendance-box" >
+                                    <div class="justify-content-around align-items-center d-flex phone_column">
                                         <span style="font-weight:700; color:#212E50;">   @if ($mte < 10){{  '0'.$mte  }}
                                                 @else
                                                 {{ $mte }}
@@ -810,8 +810,8 @@
                     </div>
                 </div>
                 @else
-                    <div class="smaTxt p-2 border" style="width:14.28%">
-                        <div class="justify-content-around align-items-center d-flex">
+                    <div class="smaTxt p-2 border attendance-box" >
+                        <div class="justify-content-around align-items-center d-flex phone_column">
                             <div class="d-flex">
                                 <span style="font-weight:700; color:#212E50;">   @if ($mte < 10){{  '0'.$mte  }}
                                                 @else

@@ -704,7 +704,8 @@ th.UserAttendance table td {
     height: 16px;
     width: 16px;
 }
-.smbr i{
+
+.smbr i {
     position: relative;
     top: -2px;
 }
@@ -723,7 +724,7 @@ th.UserAttendance table td {
 }
 
 .cttext {
-    color: #4c4b46 ;
+    color: #4c4b46;
 }
 
 .dw {
@@ -1073,14 +1074,20 @@ p {
     }
 
     .vertical-nav-menu li a {
-        padding:0;
+        padding: 0;
         transition: all .5s ease-in-out;
+
+        
+
         .l_text,
         span.text-warning {
-            text-indent: -171px;
+            /* text-indent: -171px; */
         }
 
     }
+}
+.username{
+    font-size: 19px;
 }
 
 .fixed-sidebar .app-main .app-main__outer.collapse {
@@ -1088,14 +1095,91 @@ p {
     transition: all .5s ease-in-out;
 }
 
-@media only screen and (max-width: 1140px) {
+@media only screen and (max-width: 1199px) {
     .salesCalender .smaTxt {
-    font-size: 11px;
-}
+        font-size: 11px;
+    }
+
+    .app-sidebar {
+        width: 200px;
+        display: flex;
+        z-index: 11;
+        overflow: auto;
+        min-width: 200px;
+        position: relative;
+        flex: 0 0 200px;
+        margin-top: 0px !important;
+        padding-top: 0 !important;
+        transition: all .5s ease-in-out;
+    }
+
+    .fixed-sidebar .app-main .app-main__outer {
+        padding-left: 60px;
+    }
+
+  
 }
 
 @media (max-width: 991.98px) {
     .app-main .app-main__outer {
         padding-left: 45px !important;
     }
+
+    .app-sidebar {
+        width: 271px !important;
+        transform: none;
+        position: fixed;
+    }
+
+    .app-sidebar.close {
+        width: 40px !important;
+        transform: none;
+        position: fixed;
+    }
+
+    .fixed-header .app-header,
+    .fixed-header .app-header.close {
+        margin-left: 40px;
+        width: calc(100% - 40px);
+
+    }
+
+    .mainlogo {
+        position: fixed;
+        z-index: 9999;
+        top: 12px;
+        left: 73px;
+    }
+
+}
+
+.app-main {
+    z-index: 1 !important;
+}
+
+.attendance-box{
+    width:14.28%
+}
+@media only screen and (max-width: 969px){
+    .attendance-box{
+        width:33.33%
+    }
+    .sunday{
+        width: 100%;
+        background-color: #d8d8d8 !important;
+    }
+    .sun{
+        display: none;
+    }
+
+    .app-main .app-main__inner {
+        padding: 63px 0px 0 !important;
+        flex: 1;
+    }
+}
+@media only screen and (max-width: 482px){
+    .attendance-box .phone_column{
+        flex-direction: column;
+    }
+  
 }

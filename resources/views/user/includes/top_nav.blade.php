@@ -1,6 +1,6 @@
 <style>
     .mainlogo {
-        width: 220px;
+        width: 182px;
     }
 
     .app-header .app-header__content {
@@ -8,9 +8,10 @@
         opacity: 1;
     }
 </style>
+<img src="https://pantheondigitals.com/img/logo.webp" class="mainlogo  d-block d-lg-none">
 <div class="app-header header-shadow justify-content-between">
     <div class="app-header__logo">
-        <div><img src="https://pantheondigitals.com/img/logo.webp" class="mainlogo"></div>
+        <div><img src="https://pantheondigitals.com/img/logo.webp" class="mainlogo d-none d-lg-block"></div>
     </div>
     <div class="d-flex">
         <ul class="header-menu nav d-none d-md-flex">
