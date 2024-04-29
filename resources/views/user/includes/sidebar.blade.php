@@ -46,23 +46,23 @@ text-align: center;
 </style>
 <div class="app-sidebar sidebar-shadow" style="background: #4c4b46;">
     <div class="scrollbar-sidebar" style="overflow:auto;">
-        <div class="app-sidebar__inner px-3">
-            <div class="mt-4  hamnav_desktop">
+        <div class="app-sidebar__inner px-2 px-lg-3">
+            <div class="mt-3  hamnav_desktop">
                 <div class="">
-                    <p class="d-block text-decoration-none text-white bibr smaTxt p-1 m-1  lh-sm text-center rounded-circle bibr" id="ham_nav_icon" data-toggle="tooltip" data-placement="top" title="open/close">
+                    <p class="d-block text-decoration-none text-white bibr smaTxt p-1 m-1  lh-sm rounded-circle bibr " id="ham_nav_icon" data-toggle="tooltip" data-placement="top" title="open/close">
                         <i class="fa-solid fa-bars"></i>
                     </p>
                 </div>
-                <a href="{{env('APP_URL')}}profile" class="profileIcon baseBtnBg lh-sm text-center p-1 m-1 my-4 smatxt rounded-circle text-white">
+                <a href="{{env('APP_URL')}}profile" class="profileIcon baseBtnBg lh-sm p-1 m-1 my-4 smatxt rounded-circle text-white">
                         <i class="fa-solid fa-user"></i>
                     </a>
-                <div class="mx-2 txtnav l_text username">
+                <div class="mx-2 txtnav l_text username text-nowrap text-truncate my-4">
                     {{$user->name}}
                 </div>
                 
             </div>
             
-            <ul class="vertical-nav-menu mt-4">
+            <ul class="vertical-nav-menu mt-4 overflow-hidden">
 
                 <li class="my-2">
                     <a href="{{env('APP_URL')}}user" class="@if(Request::url() == env('APP_URL') . 'user') {{'mm-active'}} @endif align-items-center d-flex smaTxt">
